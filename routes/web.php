@@ -12,6 +12,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     
 });
 
+Route::namespace('User')->prefix('user')->name('user.')->group(function() {
+    Route::resource('/rented', 'RentsController');
+    Route::resource('/books', 'BooksController');
+    Route::patch('/rented/{rented}', 'RentsController@update');
+});
 
 Auth::routes();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -16,7 +16,11 @@ class RentsController extends Controller
      */
     public function index()
     {
-     
+        $user = auth()->user()->id;
+
+        $currentRents = Rent::where('date_returned', NULL)->where('student_id', $user)->get();
+        $histories = Rent::where('date_returned', '!=', NULL)->where('student_id', $user)->get();
+        return view('user.rented.index', compact('currentRents', 'histories'));
     }
 
     /**
@@ -69,9 +73,16 @@ class RentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Rent $rented)
     {
-        //
+        $return = date('Y-m-d');
+
+        $rented->date_returned = $return;
+        $rented->save();
+
+        $book = Book::where('name', $rented->name)->increment('available', 1);
+        
+        return redirect()->back();
     }
 
     /**

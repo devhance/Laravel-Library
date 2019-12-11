@@ -26,7 +26,8 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('admin.books.create');
+        $book = new Book;
+        return view('admin.books.create', compact('book'));
     }
 
     /**
@@ -79,7 +80,7 @@ class BooksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Book $book)
-    {
+    {   dd($book);
         $data = request()->validate([
             'name' => 'required',
             'author' => 'required',

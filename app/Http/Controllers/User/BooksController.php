@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Rent;
 use App\Book;
+use App\Rent;
 
-class RentsController extends Controller
+class BooksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class RentsController extends Controller
      */
     public function index()
     {
-     
+        $books = Book::all();
+        return view('user.books.index', compact('books'));
     }
 
     /**
@@ -46,9 +47,12 @@ class RentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+        $user = auth()->user()->id;
+        $checkRent = Rent::where('name', $book->name)->where('student_id', $user)->where('date_returned', NULL)->first();
+        
+        return view('user.books.show', compact('book', 'checkRent'));
     }
 
     /**
@@ -69,9 +73,25 @@ class RentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Book $book)
     {
-        //
+        $user = auth()->user()->id;
+        $book->available = $book->available - 1;
+        $book->save();
+    
+        $date = strtotime(date('Y/m/d'));
+        $date = strtotime("+7 day", $date);
+        $return_date = date('Y/m/d', $date);
+       
+
+        Rent::create([
+            'name' => $book->name,
+            'student_id' => $user,
+            'rent_date' => date('Y-m-d'),
+            'return_date' => $return_date
+        ]);
+ 
+        return redirect('/user/rented');
     }
 
     /**
