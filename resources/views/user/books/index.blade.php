@@ -30,7 +30,8 @@
                         <tr><td colspan="5" class="center">There are no books found.</td></tr>
                     @endforelse
                 </tbody>
-            </table>   
+            </table> 
+            {{ $books->links('vendor.pagination.semantic-ui') }}  
         </div>
     </div>
 </div>

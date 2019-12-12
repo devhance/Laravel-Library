@@ -9,6 +9,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('/users', 'UsersController');
     Route::resource('/rented', 'RentsController');
     Route::patch('/users/{student_id}', 'UsersController@update');
+    Route::resource('/rented/overdue', 'RentsController@show');
     
 });
 

@@ -20,14 +20,14 @@
             </thead>
             <tbody>
                 @forelse ($rents as $rent)
-                    <tr>
-                        <td>{{ $rent->name }}</td>
+                    <tr class="red-text">
+                        <td><a href="" class="red-text"><b>{{ $rent->name }}</b></a></td>
                         <td>{{ $rent->book_id }}</td>
                         <td>{{ $rent->author }}</td>
                         <td>{{ $rent->category }}</td>
                         <td>{{ $rent->lastname }} {{ $rent->firstname }}</td>
                         <td>{{ $rent->rent_date }}</td>
-                        <td>{{ $rent->return_date }}</td>
+                        <td class="">{{ $rent->return_date }}</td>
                     </tr>
 
                 @empty 

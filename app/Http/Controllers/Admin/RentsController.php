@@ -18,22 +18,12 @@ class RentsController extends Controller
      */
     public function index()
     {
-        // $rents = Rent::where('date_returned', NULL)->get();
-        
-        
-        // 
-
-        // $rents = Rent::select('rents.*', 'users.firstname', 'users.lastname', 'books.author', 'books.book_id', 'books.category')
-        //             ->join('books', 'rents.name', '=', 'books.name')
-        //             ->join('users', 'rents.student_id', '=', 'users.student_id')
-        //             ->get();
         $rents = Rent::where('date_returned', NULL)
                     ->select('rents.*', 'users.firstname', 'users.lastname', 'books.author', 'books.book_id', 'books.category')
                     ->join('books', 'rents.name', '=', 'books.name')
                     ->join('users', 'rents.student_id', '=', 'users.student_id')
-                    ->get();
-  
-        
+                    ->paginate(10);
+     
         return view('admin.rents.index', compact('rents'));
 
     }
@@ -67,7 +57,15 @@ class RentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $today = date('Y-m-d');
+        $rents = Rent::where('date_returned', NULL)
+                    ->where('return_date', '<',  $today)
+                    ->select('rents.*', 'users.firstname', 'users.lastname', 'books.author', 'books.book_id', 'books.category')
+                    ->join('books', 'rents.name', '=', 'books.name')
+                    ->join('users', 'rents.student_id', '=', 'users.student_id')
+                    ->paginate(15);
+        
+        return view('admin.rents.overdue', compact('rents'));
     }
 
     /**

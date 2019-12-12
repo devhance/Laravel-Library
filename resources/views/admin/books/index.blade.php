@@ -42,6 +42,7 @@
                     @endforelse
                 </tbody>
             </table>   
+            {{ $books->links('vendor.pagination.semantic-ui') }}
         </div>
     </div>
 </div>
