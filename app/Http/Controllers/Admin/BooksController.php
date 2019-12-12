@@ -38,8 +38,10 @@ class BooksController extends Controller
      */
     public function store()
     {
+      
         $data = request()->validate([
             'name' => 'required',
+            'book_id' => 'required',
             'author' => 'required',
             'category' => 'required',
             'available' => 'required',

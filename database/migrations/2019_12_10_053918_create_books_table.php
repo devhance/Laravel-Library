@@ -17,6 +17,7 @@ class CreateBooksTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('author');
+            $table->integer('book_id');
             $table->string('category');
             $table->mediumText('description');
             $table->integer('available');

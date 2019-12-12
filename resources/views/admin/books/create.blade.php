@@ -9,10 +9,11 @@
         <div class="card-content">
             <form action="{{ route('admin.books.store') }}" class="ui form" method="post">
                 @include('inc.books')
+                <input type="hidden" name="book_id" value="{{ mt_rand(100000000, 999999999) }}">
                 @csrf
                 <button class="ui primary button">Submit</button>
             </form>
-        </div>
+        </div> 
     </div>
 </div>
 @endsection
