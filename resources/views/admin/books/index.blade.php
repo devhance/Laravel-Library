@@ -6,7 +6,7 @@
     <div class="card">
         <h3 class="ui top attached header">List of Books</h3>
         <div class="card-content">
-            <a href="/admin/books/create" class="ui primary button right">Add Book</a>
+            <a href="/admin/books/create" class="ui basic blue button right">Add Book</a>
             <br /><br />
             <table class="ui selectabe celled table">
                 <thead>

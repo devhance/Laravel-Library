@@ -1,4 +1,4 @@
-<nav class="blue z-depth-0">
+<nav class="white z-depth-1">
     <div class="nav-wrapper container">
         <a href="{{ url('/') }}" class="brand-logo left">{{ config('app.name', 'Laravel') }}</a>
         <a href="#" data-activates="side-nav" class="button-collapse right">
@@ -11,10 +11,15 @@
                     <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                 @endif
             @else 
+                @can('admin')
                 <li><a href="/admin/users">User Management</a></li>
                 <li><a href="/admin/books">Book Mangement</a></li>
                 <li><a href="/admin/rented">Rented</a></li>
-                <li><a href="/admin/users">Overdue</a></li>
+                @endcan
+                @can('user')
+                <li><a href="/user/rented">Dashboard</a></li>
+                <li><a href="/user/books">Rent Books</a></li>
+                @endcan
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();

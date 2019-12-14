@@ -11,7 +11,7 @@
                 @method('PATCH')
                 @include('inc.books')
                 @csrf
-                <button class="ui primary button">Submit</button>
+                <button class="ui basic blue button">Submit</button>
             </form>
         </div>
     </div>

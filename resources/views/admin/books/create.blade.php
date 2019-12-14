@@ -11,7 +11,7 @@
                 @include('inc.books')
                 <input type="hidden" name="book_id" value="{{ mt_rand(100000000, 999999999) }}">
                 @csrf
-                <button class="ui primary button">Submit</button>
+                <button class="ui basic blue button">Submit</button>
             </form>
         </div> 
     </div>

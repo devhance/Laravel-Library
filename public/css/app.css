@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway);
+* {
+  font-family: Raleway !important;
+}
 
 .ui.button {
   cursor: pointer;
@@ -33150,9 +33153,9 @@ nav .sidenav-trigger i {
 
 nav .brand-logo {
   position: absolute;
-  color: #fff;
+  color: #545454;
   display: inline-block;
-  font-size: 2.1rem;
+  font-size: 20px;
   padding: 0;
 }
 
@@ -33219,7 +33222,7 @@ nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
   font-size: 1rem;
-  color: #fff;
+  color: #545454;
   display: block;
   padding: 0 15px;
   cursor: pointer;
@@ -33237,7 +33240,9 @@ nav ul a.btn > .material-icons, nav ul a.btn-large > .material-icons, nav ul a.b
 }
 
 nav ul a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  transition: all 0.5s ease;
 }
 
 nav ul.left {

@@ -31,6 +31,8 @@
             </div>
         </div>
     </div>
-    
+<script>
+    $('.dropdown-trigger').dropdown();
+</script>
 </body>
 </html>

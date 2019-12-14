@@ -9,6 +9,9 @@ use App\Book;
 
 class RentsController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +19,7 @@ class RentsController extends Controller
      */
     public function index()
     {
-        $user = auth()->user()->id;
+        $user = auth()->user()->student_id;
 
         $currentRents = Rent::where('date_returned', NULL)->where('student_id', $user)->get();
         $histories = Rent::where('date_returned', '!=', NULL)->where('student_id', $user)->get();
